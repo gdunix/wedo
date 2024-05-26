@@ -1,4 +1,6 @@
-export const CATEGORIES = [
+import { Category, City, Vendor } from "./types/Vendors";
+
+export const CATEGORIES: Category[] = [
   {
     id: 1,
     name: "Photographers",
@@ -14,7 +16,7 @@ export const CATEGORIES = [
     id: 3,
     name: "Venues",
     slug: "venues",
-    img: "https://howefarmstn.com/wp-content/uploads/2022/09/outdoor-ceremony_1-1024x819-1-1024x675.jpg"
+    img: "https://howefarmstn.com/wp-content/uploads/2022/09/outdoor-ceremony_1-1024x819-1-1024x675.jpg",
   },
   {
     id: 4,
@@ -30,7 +32,7 @@ export const CATEGORIES = [
     id: 6,
     name: "DJs",
     slug: "djs",
-    img: "https://cdn0.hitched.co.uk/article/9653/3_2/1280/jpg/133569-things-your-wedding-dj-wants-you-to-know-dj-knight-music.jpeg"
+    img: "https://cdn0.hitched.co.uk/article/9653/3_2/1280/jpg/133569-things-your-wedding-dj-wants-you-to-know-dj-knight-music.jpeg",
   },
   {
     id: 7,
@@ -174,7 +176,7 @@ export const CATEGORIES = [
   },
 ];
 
-export const CITIES = [
+export const CITIES: City[] = [
   {
     id: 1,
     name: "Athens",
@@ -363,7 +365,7 @@ export const CITIES = [
   },
 ];
 
-export const VENDORS = [
+export const VENDORS: Vendor[] = [
   {
     id: 1,
     name: "The Grand Wedding Hall",
@@ -701,6 +703,7 @@ export const VENDORS = [
     id: 43,
     name: "Pelagia's Wedding Hall",
     categoryId: 3,
+    cityId: 1,
     img: "/images/no-image.png",
     rating: 4.2,
     slug: "pelagias-wedding-hall",

@@ -11,6 +11,7 @@ export type Vendor = {
 export type City = {
   id: number;
   name: string;
+  country: string;
   slug: string;
 };
 

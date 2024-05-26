@@ -7,7 +7,7 @@ export const getVendors = ({
 }: {
   category: string;
   city?: string;
-}): Vendor[] => {
+}): Vendor[] | undefined => {
   const categoryId = C.CATEGORIES.find((item) => item.slug === category)?.id;
   const cityId = C.CITIES.find((item) => item.slug === city)?.id;
   return !city
@@ -15,7 +15,7 @@ export const getVendors = ({
     : C.VENDORS.filter(
         (item: Vendor) =>
           item.categoryId === categoryId && item.cityId === cityId
-      ) ?? [];
+      );
 };
 
 export const getCity = (cityId: number): string =>
@@ -24,5 +24,5 @@ export const getCity = (cityId: number): string =>
 export const getCityBySlug = (slug: string): string =>
   C.CITIES.find((item) => item.slug === slug)?.name ?? "";
 
-export const getCategoryBySlug = (slug: strung): string =>
+export const getCategoryBySlug = (slug: string): string =>
   C.CATEGORIES.find((item) => item.slug === slug)?.name ?? "";
