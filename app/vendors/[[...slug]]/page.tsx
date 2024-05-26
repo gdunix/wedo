@@ -8,7 +8,7 @@ const Vendors = ({ params }: Params) => {
   const { slug = [] } = params;
   const category = slug[0];
   const city = slug[1];
-  const vendors = U.getVendors({ category, city });
+  const vendors = U.getVendors({ category, city }) ?? [];
   return (
     <div className="h-svh max-w-[1360px] py-10 mx-auto my-0">
       <BreadCrumbs category={category} city={city} />
