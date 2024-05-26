@@ -10,7 +10,7 @@ const Vendors = ({ params }: Params) => {
   const city = slug[1];
   const vendors = U.getVendors({ category, city }) ?? [];
   return (
-    <div className="h-svh max-w-[1360px] py-10 mx-auto my-0">
+    <div className="h-full max-w-[1360px] py-10 px-20 mx-auto my-0">
       <BreadCrumbs category={category} city={city} />
       <Title category={category} city={city} results={vendors?.length} />
       <List vendors={vendors} />

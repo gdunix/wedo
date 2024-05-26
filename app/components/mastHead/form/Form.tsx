@@ -10,7 +10,6 @@ import * as C from "@/constants";
 const Form = () => {
   const router = useRouter();
   const handleVendorChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target);
     setVendor(e.target.value);
   };
   const handleCityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

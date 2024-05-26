@@ -29,10 +29,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`h-lvh ${roboto.className}`}>
+      <body className={`h-full ${roboto.className}`}>
         <div id="root" className="h-lvh flex flex-col">
           <Header />
-          <div className="">{children}</div>
+          <div className="flex-1">{children}</div>
           <Footer />
         </div>
       </body>

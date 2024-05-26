@@ -4,7 +4,6 @@ import {
   NavbarBrand,
   NavbarItem,
 } from "@/components/ui/navBar";
-import Link from "next/link";
 import Logo from "./logo";
 import Actions from "./actions";
 
@@ -21,7 +20,7 @@ const Header: React.FC = () => {
           content: "w-full",
         }}
       >
-        <NavbarContent className="hidden sm:flex gap-4" justify="start">
+        <NavbarContent className="flex gap-4" justify="start">
           <NavbarBrand>
             <Logo />
           </NavbarBrand>
