@@ -14,7 +14,7 @@ const BreadCrumbs: React.FC<Props> = ({ category = "", city }: Props) => (
     }}
   >
     <BreadcrumbItem key="home" href="/">
-      Home
+      HOME
     </BreadcrumbItem>
     {category && (
       <BreadcrumbItem key={category} href={`/vendors/${category}`}>

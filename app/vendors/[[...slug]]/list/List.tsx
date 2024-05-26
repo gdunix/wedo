@@ -33,7 +33,7 @@ const List: React.FC<Props> = ({ vendors = [] }: Props) => {
               <div className="flex justify-between">
                 <div>{U.getCity(vendor.cityId)}</div>
                 <div className="flex items-center">
-                  <Rating count={1} value={1} />
+                  <Rating count={1} value={1} size={12} edit={false}/>
                   <span className="ml-1">{vendor.rating ?? "No rating"}</span>
                 </div>
               </div>

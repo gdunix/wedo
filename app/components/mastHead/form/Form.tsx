@@ -6,6 +6,8 @@ import { Select, SelectItem } from "@/components/ui/select";
 import { Card, CardHeader, CardBody } from "@/components/ui/card";
 import Button from "@/components/ui/button";
 import * as C from "@/constants";
+import { Category } from "@/types/Vendors";
+import sortBy from "lodash/fp/sortBy";
 
 const Form = () => {
   const router = useRouter();
@@ -30,11 +32,13 @@ const Form = () => {
           onChange={handleVendorChange}
           size="lg"
         >
-          {C.CATEGORIES.map((vendor) => (
-            <SelectItem key={vendor.slug} value={vendor.slug}>
-              {vendor.name}
-            </SelectItem>
-          ))}
+          {sortBy((c: Category) => c.ranking)(C.CATEGORIES).map(
+            (category: Category) => (
+              <SelectItem key={category.slug} value={category.slug}>
+                {category.name}
+              </SelectItem>
+            )
+          )}
         </Select>
         <Select
           label="Select city"
@@ -53,7 +57,7 @@ const Form = () => {
           color="primary"
           size="lg"
           onClick={onClick}
-          disabled={!city && !vendor}
+          isDisabled={!vendor}
         >
           Search
         </Button>

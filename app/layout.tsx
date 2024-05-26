@@ -3,6 +3,7 @@ import { Inter, Slabo_27px, Roboto_Condensed } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { NextUIProvider } from "@nextui-org/react";
 
 const inter = Inter({ subsets: ["latin"] });
 const slabo = Slabo_27px({
@@ -30,11 +31,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`h-full ${roboto.className}`}>
-        <div id="root" className="h-lvh flex flex-col">
-          <Header />
-          <div className="flex-1">{children}</div>
-          <Footer />
-        </div>
+        <NextUIProvider locale="en-GB">
+          <div id="root" className="h-lvh flex flex-col">
+            <Header />
+            <div className="flex-1">{children}</div>
+            <Footer />
+          </div>
+        </NextUIProvider>
       </body>
     </html>
   );
