@@ -12,7 +12,7 @@ const Vendors = ({ params }: Params) => {
   return (
     <div className="h-svh max-w-[1360px] py-10 mx-auto my-0">
       <BreadCrumbs category={category} city={city} />
-      <Title category={category} city={city} results={vendors.length} />
+      <Title category={category} city={city} results={vendors?.length} />
       <List vendors={vendors} />
     </div>
   );
