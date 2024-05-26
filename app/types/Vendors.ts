@@ -5,6 +5,7 @@ export type Vendor = {
   cityId: number;
   rating?: number;
   slug: string;
+  img?: string;
 };
 
 export type City = {
