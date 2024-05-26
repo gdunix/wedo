@@ -2,7 +2,7 @@ import { Card, CardHeader, CardBody } from "@/components/ui/card";
 import Link from "next/link";
 import { Image } from "@nextui-org/react";
 import * as C from "@/constants";
-import { Vendor } from "@/types/Vendors";
+import { Category } from "@/types/Vendors";
 
 const Vendors: React.FC = () => (
   <section className="bg-white w-full">
@@ -14,24 +14,24 @@ const Vendors: React.FC = () => (
         </div>
       </div>
       <div className="max-w-[967px] flex flex-wrap gap-8 justify-center">
-        {C.VENDORS.filter((f: Vendor) =>
+        {C.CATEGORIES.filter((f: Category) =>
           [1, 3, 12, 5, 6, 19].includes(f.id)
-        ).map((vendor: Vendor) => (
+        ).map((category: Category) => (
           <Card
             className="bg-transparent shadow-none"
-            key={`vendor-${vendor.id}`}
+            key={`category-${category.id}`}
           >
             <CardBody className="overflow-visible py-2 items-center">
-              <Link href={`/vendors/${vendor.slug}`}>
+              <Link href={`/vendors/${category.slug}`}>
                 <div className="relative">
                   <div className="absolute top-[124px] left-0 right-0 text-white p-2 z-[100] bg-black bg-opacity-30 text-center align-middle rounded-xl font-bold text-lg">
-                    {vendor.name}
+                    {category.name}
                   </div>
                   <Image
                     alt="Card background"
                     className="object-cover rounded-xl"
                     src={
-                      vendor.img ??
+                      category.img ??
                       "https://nextui.org/images/hero-card-complete.jpeg"
                     }
                     width={270}

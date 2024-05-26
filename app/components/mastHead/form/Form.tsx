@@ -31,7 +31,7 @@ const Form = () => {
           onChange={handleVendorChange}
           size="lg"
         >
-          {C.VENDORS.map((vendor) => (
+          {C.CATEGORIES.map((vendor) => (
             <SelectItem key={vendor.slug} value={vendor.slug}>
               {vendor.name}
             </SelectItem>

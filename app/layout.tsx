@@ -15,7 +15,7 @@ const slabo = Slabo_27px({
 const roboto = Roboto_Condensed({
   subsets: ["latin"],
   weight: "400",
-})
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -29,10 +29,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`h-screen ${roboto.className}`}>
-        <Header />
-        <div className="">{children}</div>
-        <Footer /> 
+      <body className={`h-lvh ${roboto.className}`}>
+        <div id="root" className="h-lvh flex flex-col">
+          <Header />
+          <div className="">{children}</div>
+          <Footer />
+        </div>
       </body>
     </html>
   );
