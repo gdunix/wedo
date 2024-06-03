@@ -4,14 +4,8 @@ import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { NextUIProvider } from "@nextui-org/react";
+import Auth from "@/components/auth";
 
-const inter = Inter({ subsets: ["latin"] });
-const slabo = Slabo_27px({
-  subsets: ["latin"],
-  display: "swap",
-  weight: "400",
-  variable: "--font-slabo",
-});
 
 const roboto = Roboto_Condensed({
   subsets: ["latin"],
@@ -41,6 +35,7 @@ export default function RootLayout({
             <Footer />
           </div>
         </NextUIProvider>
+        <Auth />
       </body>
     </html>
   );
