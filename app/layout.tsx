@@ -30,6 +30,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+      <link rel="icon" href="/images/favicon-32x32.ico" sizes="any" />
+      </head>
       <body className={`h-full ${roboto.className}`}>
         <NextUIProvider locale="en-GB">
           <div id="root" className="h-lvh flex flex-col">
