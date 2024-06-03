@@ -1,13 +1,16 @@
 "use client";
 import { Params } from "@/types/Params";
+import { useIsMobile } from "@/hooks/useMediaQuery";
 import * as U from "./utils";
 import Rating from "@/components/ui/rating";
 import Tabs from "./tabs";
 import Contact from "./contact";
 import BreadCrumbs from "./breadCrumbs";
+import Accordions from "./accordions";
 
 const Vendor = ({ params }: Params) => {
   const vendor = U.getVendor(params.slug);
+  const isMobile = useIsMobile();
   return (
     <>
       <div className="h-full max-w-[1360px] py-10 px-20 mx-auto my-0">
@@ -20,9 +23,7 @@ const Vendor = ({ params }: Params) => {
           <div className="ml-2 text-md">{vendor?.rating} (12)</div>
         </div>
         <div className="flex flex-col md:flex-row gap-4 justify-between">
-          <div>
-            <Tabs />
-          </div>
+          <div>{isMobile ? <Accordions /> : <Tabs />}</div>
           <Contact />
         </div>
       </div>
