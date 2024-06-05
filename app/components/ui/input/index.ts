@@ -1,3 +1,4 @@
 import { Input } from '@nextui-org/react';
 
-export default Input;
+export { default as PasswordInput } from './passwordInput';
+export { Input};

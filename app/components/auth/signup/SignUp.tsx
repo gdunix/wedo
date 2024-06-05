@@ -1,20 +1,32 @@
+"use client";
 import { useState } from "react";
-import Input from "@/components/ui/input";
+import { useRouter } from "next/navigation";
+import { Input, PasswordInput } from "@/components/ui/input";
 import Button from "@/components/ui/button";
 import Link from "@/components/ui/link";
 import { EyeFilledIcon, EyeSlashIcon } from "@/components/icons";
-import useAuth from "@/hooks/useAuth";
 
-const SignUp = () => {
+type Props = {
+  isModal?: boolean;
+};
+
+const SignUp = ({ isModal = false }: Props) => {
   const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
-  const { closeAuthModal, openLoginModal } = useAuth();
+  // const { closeAuthModal, openLoginModal } = useAuth();
   const onSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     console.log("event", event.target);
     event.preventDefault();
     const formData = new FormData(event.target as HTMLFormElement);
     console.log(formData);
     // closeAuthModal();
+  };
+  const router = useRouter();
+  const closeModal = () => {
+    router.back();
+  };
+  const openLoginModal = () => {
+    router.push("/signup");
   };
   return (
     <form
@@ -34,60 +46,28 @@ const SignUp = () => {
           />
         </div>
         <div>
-          <Input
-            label="Password"
-            name="password"
-            variant="bordered"
-            placeholder="Enter your password"
-            endContent={
-              <button
-                className="focus:outline-none"
-                type="button"
-                onClick={toggleVisibility}
-              >
-                {isVisible ? (
-                  <EyeSlashIcon className="text-2xl text-default-400 pointer-events-none" />
-                ) : (
-                  <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                )}
-              </button>
-            }
-            type={isVisible ? "text" : "password"}
-            fullWidth
-          />
+          <PasswordInput label="Password" name="password" fullWidth />
         </div>
         <div>
-          <Input
+          <PasswordInput
             label="Confirm Password"
             name="confirmPassword"
-            variant="bordered"
-            placeholder="Enter your password"
-            endContent={
-              <button
-                className="focus:outline-none"
-                type="button"
-                onClick={toggleVisibility}
-              >
-                {isVisible ? (
-                  <EyeSlashIcon className="text-2xl text-default-400 pointer-events-none" />
-                ) : (
-                  <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                )}
-              </button>
-            }
-            type={isVisible ? "text" : "password"}
             fullWidth
           />
         </div>
-        <div className="flex pl-1 pt-2 pb-1 justify-between">
-          <Link color="primary" onPress={openLoginModal} href="#" size="sm">
-            Already a member? Login
-          </Link>
-        </div>
+        {isModal && (
+          <div className="flex pl-1 pt-2 pb-1 justify-between">
+            <Link color="primary" onPress={openLoginModal} href="#" size="sm">
+              Already a member? Login
+            </Link>
+          </div>
+        )}
         <div className="flex justify-end my-2">
-          <Button color="danger" variant="light" onPress={closeAuthModal}>
-            Close
-          </Button>
+          {isModal && (
+            <Button color="danger" variant="light" onPress={closeModal}>
+              Close
+            </Button>
+          )}
           <Button type="submit" color="primary">
             Sign Up
           </Button>

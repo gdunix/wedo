@@ -1,14 +1,24 @@
+"use client";
 import { useState } from "react";
-import Input from "@/components/ui/input";
-import { EyeFilledIcon, EyeSlashIcon } from "@/components/icons";
+import { useRouter } from "next/navigation";
+import { Input, PasswordInput } from "@/components/ui/input";
 import Button from "@/components/ui/button";
 import Link from "@/components/ui/link";
-import useAuth from "@/hooks/useAuth";
 
-const Login = () => {
+type Props = {
+  isModal?: boolean;
+};
+
+const Login = ({ isModal = false }: Props) => {
   const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => setIsVisible(!isVisible);
-  const { closeAuthModal, openSignupModal } = useAuth();
+  const router = useRouter();
+  const closeModal = () => {
+    router.back();
+  };
+  const openSignupModal = () => {
+    router.push("/signup");
+  };
   const onSubmit = async (event: React.SyntheticEvent<HTMLFormElement>) => {
     console.log("event", event.target);
     event.preventDefault();
@@ -35,37 +45,21 @@ const Login = () => {
           />
         </div>
         <div>
-          <Input
-            label="Password"
-            name="password"
-            variant="bordered"
-            placeholder="Enter your password"
-            endContent={
-              <button
-                className="focus:outline-none"
-                type="button"
-                onClick={toggleVisibility}
-              >
-                {isVisible ? (
-                  <EyeSlashIcon className="text-2xl text-default-400 pointer-events-none" />
-                ) : (
-                  <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                )}
-              </button>
-            }
-            type={isVisible ? "text" : "password"}
-            fullWidth
-          />
+          <PasswordInput label="Password" name="password" fullWidth />
         </div>
-        <div className="flex pl-1 pt-2 pb-1 justify-between">
-          <Link color="primary" onPress={openSignupModal} href="#" size="sm">
-            Not a member? Sign Up
-          </Link>
-        </div>
+        {isModal && (
+          <div className="flex pl-1 pt-2 pb-1 justify-between">
+            <Link color="primary" onPress={openSignupModal} href="#" size="sm">
+              Not a member? Sign Up
+            </Link>
+          </div>
+        )}
         <div className="flex justify-end my-2">
-          <Button color="danger" variant="light" onPress={closeAuthModal}>
-            Close
-          </Button>
+          {isModal && (
+            <Button color="danger" variant="light" onPress={closeModal}>
+              Close
+            </Button>
+          )}
           <Button type="submit" color="primary">
             Login
           </Button>

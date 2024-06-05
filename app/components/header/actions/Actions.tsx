@@ -1,15 +1,17 @@
 "use client";
+import { useRouter } from "next/navigation";
 import Button from "@/components/ui/button";
-import useAuth from "@/hooks/useAuth";
 
 const Actions: React.FC = () => {
-  const { openLoginModal, openSignupModal } = useAuth();
+  const router = useRouter();
+  const gotoLogin = () => router.push("/login");
+  const gotoSignUp = () => router.push("/signup");
   return (
     <div className="flex gap-4">
-      <Button color="primary" onClick={openLoginModal} size="md">
+      <Button color="primary" onClick={gotoLogin} size="md">
         Login
       </Button>
-      <Button onClick={openSignupModal} size="md">
+      <Button onClick={gotoSignUp} size="md">
         Sign up
       </Button>
     </div>
