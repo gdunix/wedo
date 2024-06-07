@@ -15,8 +15,7 @@ const Modal = ({ title = "", onClose, children, ...rest }: Props) => (
   <NextUIModal
     defaultOpen
     onClose={onClose}
-    backdrop="opaque"
-    placement="center"
+    placement="top"
     motionProps={{
       variants: {
         enter: {
