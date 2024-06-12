@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { NextUIProvider } from "@nextui-org/react";
+import { NotistackProvider } from "./components/ui/snackbar";
 
 const roboto = Roboto_Condensed({
   subsets: ["latin"],
@@ -30,12 +31,14 @@ export default function RootLayout({
       </head>
       <body className={`h-full ${roboto.className}`}>
         <NextUIProvider locale="en-GB">
+          <NotistackProvider>
           {auth}
           <div id="root" className="h-lvh flex flex-col">
             <Header />
             <div className="flex-1">{children}</div>
             <Footer />
           </div>
+          </NotistackProvider>
         </NextUIProvider>
       </body>
     </html>

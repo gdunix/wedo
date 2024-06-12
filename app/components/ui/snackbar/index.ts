@@ -1,4 +1,7 @@
-import { enqueueSnackbar } from "notistack";
+"use client";
+import { enqueueSnackbar, SnackbarProvider } from "notistack";
 
-export { default as Snackbar } from "./Snackbar";
-export { enqueueSnackbar as showSnackbar };
+export {
+  enqueueSnackbar as showSnackbar,
+  SnackbarProvider as NotistackProvider,
+};

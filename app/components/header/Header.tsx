@@ -4,10 +4,14 @@ import {
   NavbarBrand,
   NavbarItem,
 } from "@/components/ui/navBar";
+import useAuth from "@/hooks/useAuth";
 import Logo from "./logo";
 import Actions from "./actions";
+import Menu from "./menu";
+
 
 const Header: React.FC = () => {
+  const { isLoggedIn } = useAuth();
   return (
     <header>
       <Navbar
@@ -29,7 +33,7 @@ const Header: React.FC = () => {
         <NavbarContent className="hidden sm:flex gap-4" justify="center" />
         <NavbarContent justify="end" className="flex justify-end">
           <NavbarItem>
-            <Actions />
+            {isLoggedIn ? <Menu /> : <Actions />}
           </NavbarItem>
         </NavbarContent>
       </Navbar>
