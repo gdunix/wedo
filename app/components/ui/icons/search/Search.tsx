@@ -1,6 +1,6 @@
 import SvgWrapper from "../SvgWrapper";
 
-const SearchIcon = () => (
+const Search = () => (
   <SvgWrapper>
     <g
       fill="none"
@@ -27,4 +27,4 @@ const SearchIcon = () => (
   </SvgWrapper>
 );
 
-export default SearchIcon;
+export default Search;
