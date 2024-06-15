@@ -45,3 +45,14 @@ export const login = async (formData: data) => {
 export const logout = () => {
   cookies().set("session", "", { expires: new Date(0) });
 };
+
+export const getAll = async (cache: string = "no-store") => {
+  const res = await fetch(`${process.env.URL}/api/users`, {
+    cache,
+  });
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+};
