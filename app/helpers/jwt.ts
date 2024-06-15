@@ -1,9 +1,5 @@
 import { jwtVerify, SignJWT } from "jose";
-
-type Payload = {
-  id: number;
-  email: string;
-};
+import { Session, Payload } from "@/types";
 
 const getJwtSecretKey = () => {
   const secret = process.env.NEXT_PUBLIC_ENV_JWT_SECRET_KEY;
@@ -13,9 +9,10 @@ const getJwtSecretKey = () => {
   return new TextEncoder().encode(secret);
 };
 
-export const verifyJwtToken = async (token: string) => {
+export const verifyJwt = async (token: string): Promise<Session | null> => {
   try {
-    return await jwtVerify(token, getJwtSecretKey());
+    const session = await jwtVerify(token, getJwtSecretKey()) as Session;
+    return session
   } catch (error) {
     console.log(error);
     return null;

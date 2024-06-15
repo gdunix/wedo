@@ -10,8 +10,8 @@ import Actions from "./actions";
 import Menu from "./menu";
 
 
-const Header: React.FC = () => {
-  const { isLoggedIn } = useAuth();
+const Header: React.FC = async () => {
+  const { isLoggedIn, role } = await useAuth();
   return (
     <header>
       <Navbar

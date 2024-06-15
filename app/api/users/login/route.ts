@@ -1,9 +1,8 @@
-import { signJwtToken } from "@/helpers/jwt";
 import { handler } from "@/api/handler";
 import { getUser } from "../queries";
 import { verifyPassword } from "../utils";
 
-const login = async (req: Request): Promise<Response> => {
+const login = async (req: Request): Promise<any> => {
   const data = await req.json();
   const { email, password } = data;
   if (!email || !password) {
@@ -22,20 +21,12 @@ const login = async (req: Request): Promise<Response> => {
       status: 401,
     });
   }
-  const token = await signJwtToken({
+
+  return {
     id: user.id,
     email: user.email,
-  });
-
-  return new Response(
-    JSON.stringify({
-      user: {
-        token,
-      },
-      token,
-    }),
-    { status: 200 }
-  );
+    role: user.roles.role_name,
+  };
 };
 
 export const POST = async (req: Request) => await handler(login, req);

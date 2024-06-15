@@ -1,25 +1,27 @@
 import { cookies } from "next/headers";
 
 const handler = async (
-  callback: (req: Request) => Promise<Response>,
+  callback: (req: Request) => Promise<any>,
   req: Request
 ) => {
   try {
-    const respose = await callback(req);
-    return respose;
+    const data = await callback(req);
+    return new Response(JSON.stringify(data), { status: 200 });
   } catch (error) {
+    console.log(error);
     return new Response("Server Error", { status: 500 });
   }
 };
 
 const protectedHandler = async (
-  callback: (req: Request) => Promise<Response>,
+  callback: (req: Request) => Promise<any>,
   req: Request
 ) => {
   const cookie = cookies().get("AUTH");
   const isAuthenticated = !!cookie?.value;
   if (isAuthenticated) {
-    return await handler(callback, req);
+    const data =  await handler(callback, req);
+    return new Response(JSON.stringify(data), { status: 200 });
   } else {
     return new Response("Server Error", { status: 500 });
   }

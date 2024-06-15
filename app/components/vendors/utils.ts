@@ -9,5 +9,5 @@ export const getCategories = (
 ): Category[] =>
   compose(
     (categories: Category[]) => (viewAll ? categories : take(6)(categories)),
-    sortBy((o: Category) => o.ranking)
+    sortBy((o: Category) => o.rank)
   )(categories);

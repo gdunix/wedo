@@ -32,7 +32,7 @@ const Form = () => {
           onChange={handleVendorChange}
           size="lg"
         >
-          {sortBy((c: Category) => c.ranking)(C.CATEGORIES).map(
+          {sortBy((c: Category) => c.rank)(C.CATEGORIES).map(
             (category: Category) => (
               <SelectItem key={category.slug} value={category.slug}>
                 {category.name}
