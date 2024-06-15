@@ -28,7 +28,7 @@ const Login = ({ isModal = false }: Props) => {
       return;
     }
     try {
-      const response = await login({
+       await login({
         email,
         password,
       });

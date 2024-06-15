@@ -17,9 +17,9 @@ const PasswordInput = (props: any) => {
           onClick={toggleVisibility}
         >
           {isVisible ? (
-            <EyeSlashIcon className="text-2xl text-default-400 pointer-events-none" />
+            <EyeSlashIcon />
           ) : (
-            <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
+            <EyeFilledIcon />
           )}
         </button>
       }

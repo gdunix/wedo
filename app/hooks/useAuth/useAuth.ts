@@ -1,10 +1,9 @@
-import { cookies } from "next/headers";
+import { getSession } from "@/actions/session";
 
-const useAuth = () => {
-  const cookie = cookies().get("AUTH");
-  const isLoggedIn = !!cookie;
+const useAuth = async () => {
+  const session = await getSession();
 
-  return { isLoggedIn };
+  return { isLoggedIn: !!session, role: session?.payload?.user?.role };
 };
 
 export default useAuth;

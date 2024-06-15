@@ -20,5 +20,5 @@ export type Category = {
   name: string;
   img?: string;
   slug: string;
-  ranking: number;
+  rank: number;
 };

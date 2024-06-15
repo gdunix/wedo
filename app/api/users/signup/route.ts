@@ -14,15 +14,12 @@ const signup = async (req: Request) => {
   }
   const hashedPassword = await hashPassword(password);
   const user = await addUser(email, hashedPassword);
-  return new Response(
-    JSON.stringify({
-      user: {
-        email: user.email,
-        id: user.id,
-      },
-    }),
-    { status: 201 }
-  );
+  return {
+    user: {
+      email: user.email,
+      id: user.id,
+    },
+  };
 };
 
 export const POST = async (req: Request) => await handler(signup, req);

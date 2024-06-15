@@ -1,6 +1,6 @@
 "use server";
-
-import { setAuthCookie } from "./cookies";
+import { cookies } from "next/headers";
+import { setSession } from "./session";
 
 type data = {
   email: string;
@@ -37,7 +37,11 @@ export const login = async (formData: data) => {
     throw new Error(err);
   }
 
-  const { user } = await res.json();
-  user?.token && setAuthCookie(user?.token);
-  return { id: user?.id, email: user?.email };
+  const user = await res.json();
+  setSession(user);
+  return { email: user?.email };
+};
+
+export const logout = () => {
+  cookies().set("session", "", { expires: new Date(0) });
 };

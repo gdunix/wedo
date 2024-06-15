@@ -8,7 +8,7 @@ import {
   DropdownMenu,
   DropdownTrigger,
 } from "@/components/ui/dropdown";
-import { removeAuthCookie } from "@/actions/cookies";
+import { logout } from "@/actions/users";
 
 const Menu: React.FC = () => {
   const router = useRouter();
@@ -18,7 +18,7 @@ const Menu: React.FC = () => {
     url && router.push(`/${url}`);
   };
   const onLogout = () => {
-    removeAuthCookie();
+    logout();
     router.refresh();
   };
   return (
@@ -33,6 +33,13 @@ const Menu: React.FC = () => {
           onPress={onRedirect}
         >
           Dashboard
+        </DropdownItem>
+        <DropdownItem
+          key="admin"
+          textValue="admin"
+          onPress={onRedirect}
+        >
+          Admin
         </DropdownItem>
         <DropdownItem
           key="delete"
