@@ -9,9 +9,8 @@ import Logo from "./logo";
 import Actions from "./actions";
 import Menu from "./menu";
 
-
 const Header: React.FC = async () => {
-  const { isLoggedIn, role } = await useAuth();
+  const { isAdmin, isLoggedIn } = await useAuth();
   return (
     <header>
       <Navbar
@@ -32,9 +31,7 @@ const Header: React.FC = async () => {
 
         <NavbarContent className="hidden sm:flex gap-4" justify="center" />
         <NavbarContent justify="end" className="flex justify-end">
-          <NavbarItem>
-            {isLoggedIn ? <Menu /> : <Actions />}
-          </NavbarItem>
+          <NavbarItem>{isLoggedIn ? <Menu isAdmin={isAdmin} /> : <Actions />}</NavbarItem>
         </NavbarContent>
       </Navbar>
     </header>

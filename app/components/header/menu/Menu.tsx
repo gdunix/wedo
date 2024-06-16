@@ -10,11 +10,15 @@ import {
 } from "@/components/ui/dropdown";
 import { logout } from "@/actions/users";
 
-const Menu: React.FC = () => {
+type Props = {
+  isAdmin: boolean;
+};
+
+const Menu: React.FC<Props> = ({ isAdmin }: Props) => {
   const router = useRouter();
   const onRedirect = (e: any) => {
     const target = e.target as HTMLElement;
-    const url = target?.dataset?.key ?? '';
+    const url = target?.dataset?.key ?? "";
     url && router.push(`/${url}`);
   };
   const onLogout = () => {
@@ -27,20 +31,11 @@ const Menu: React.FC = () => {
         <Button variant="bordered">My Account</Button>
       </DropdownTrigger>
       <DropdownMenu aria-label="Static Actions">
-        <DropdownItem
-          key="dashboard"
-          textValue="dashboard"
-          onPress={onRedirect}
-        >
-          Dashboard
-        </DropdownItem>
-        <DropdownItem
-          key="admin"
-          textValue="admin"
-          onPress={onRedirect}
-        >
-          Admin
-        </DropdownItem>
+        {isAdmin && (
+          <DropdownItem key="admin" textValue="admin" onPress={onRedirect}>
+            Admin
+          </DropdownItem>
+        )}
         <DropdownItem
           key="delete"
           className="text-danger"
