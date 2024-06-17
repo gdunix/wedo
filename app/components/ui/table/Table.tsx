@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo } from "react";
 import {
   Table as NUITable,
   TableHeader,
@@ -21,6 +21,7 @@ type Props = {
   rows: any[];
   columns: any[];
   actions?: Action[];
+  totalPages: number;
   topContent?: React.ReactNode;
 };
 
@@ -28,26 +29,24 @@ const Table = ({
   rows = [],
   columns = [],
   actions = [],
+  totalPages = 1,
   topContent = "",
 }: Props) => {
-  const [rowsPerPage, setRowsPerPage] = useState(15);
-  const { setPage, page, pages, pagedData, onNextPage, onPreviousPage } =
-    usePagination({
-      rows,
-      rowsPerPage,
-    });
+  const { page,  onNextPage, onPreviousPage, setPage } = usePagination({
+    totalPages,
+  });
 
   const bottomContent = useMemo(() => {
     return (
       <Pagination
         setPage={setPage}
         page={page}
-        pages={pages}
+        pages={totalPages}
         onNextPage={onNextPage}
         onPreviousPage={onPreviousPage}
       />
     );
-  }, [page, pages, onNextPage, onPreviousPage, setPage]);
+  }, [page, totalPages, setPage, onNextPage, onPreviousPage]);
 
   const renderCell = useCallback(
     (
@@ -61,9 +60,7 @@ const Table = ({
       return component === "Checkbox" ? (
         <Checkbox isDisabled isSelected={Boolean(value)} />
       ) : component == "Chip" ? (
-        <Chip color="primary">
-          {value}
-        </Chip>
+        <Chip color="primary">{value}</Chip>
       ) : component == "Actions" ? (
         <Actions actions={actions} id={item.id} />
       ) : component === "Image" ? (
@@ -72,7 +69,7 @@ const Table = ({
         <div>{value}</div>
       );
     },
-    []
+    [actions]
   );
 
   return (
@@ -90,7 +87,7 @@ const Table = ({
       <TableHeader columns={columns.filter((f) => !f.hidden)}>
         {(column) => <TableColumn key={column.uid}>{column.name}</TableColumn>}
       </TableHeader>
-      <TableBody emptyContent={"No users found"} items={pagedData}>
+      <TableBody emptyContent={"No users found"} items={rows}>
         {(item: any) => (
           <TableRow key={item.id}>
             {(columnKey) => (

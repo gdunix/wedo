@@ -1,40 +1,37 @@
-import { useCallback, useMemo, useState } from "react";
+"import client";
+
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { useCallback } from "react";
 
 type Props = {
-  rows: any[];
-  rowsPerPage: number;
+  totalPages: number;
 };
 
-const usePagination = ({
-  rows = [],
-  rowsPerPage = 10,
-}: Props) => {
-  const [page, setPage] = useState(1);
-  const pages = Math.ceil(rows.length / rowsPerPage);
+const usePagination = ({ totalPages = 1 }: Props) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const page = parseInt(searchParams.get("page") ?? "1");
 
-  const pagedData = useMemo(() => {
-    const start = (page - 1) * rowsPerPage;
-    const end = start + rowsPerPage;
-
-    return rows.slice(start, end);
-  }, [page, rows, rowsPerPage]);
+  const setPage = useCallback((page: number) => {
+    const query = `?page=${page}`;
+    router.push(`${pathname}${query}`);
+  }, [pathname, router]);
 
   const onNextPage = useCallback(() => {
-    if (page < pages) {
+    if (page < totalPages) {
       setPage(page + 1);
     }
-  }, [page, pages]);
+  }, [page, totalPages, setPage]);
 
   const onPreviousPage = useCallback(() => {
     if (page > 1) {
       setPage(page - 1);
     }
-  }, [page]);
+  }, [page, setPage]);
 
   return {
     page,
-    pages,
-    pagedData,
     setPage,
     onNextPage,
     onPreviousPage,

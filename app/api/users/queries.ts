@@ -27,3 +27,30 @@ export const getUsers = async () =>
       },
     },
   });
+
+export const getPaginatedUsers = async (page: number, limit: number) => {
+  const skip = (page - 1) * limit;
+  const take = limit;
+  const users = await prisma.users.findMany({
+    skip: skip,
+    take: take,
+    select: {
+      id: true,
+      email: true,
+      created_at: true,
+      roles: {
+        select: {
+          role_name: true,
+        },
+      },
+    },
+  });
+
+  const totalUsers = await prisma.users.count();
+
+  return {
+    data: users,
+    total: totalUsers,
+    totalPages: Math.ceil(totalUsers / limit),
+  };
+};

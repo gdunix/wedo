@@ -7,9 +7,11 @@ import { Category } from "@/types";
 
 type Props = {
   data: Category[];
+  total: number;
+  totalPages: number;
 };
 
-const Categories = ({ data }: Props) => {
+const Categories = ({ data, total, totalPages }: Props) => {
   const columns = U.getColumns(data);
   const router = useRouter();
   const actions = [
@@ -21,7 +23,14 @@ const Categories = ({ data }: Props) => {
     },
     { name: "Delete", onClick: (id: string) => {} },
   ];
-  return <Table rows={data} columns={columns} actions={actions} />;
+  return (
+    <Table
+      rows={data}
+      totalPages={totalPages}
+      columns={columns}
+      actions={actions}
+    />
+  );
 };
 
 export default Categories;

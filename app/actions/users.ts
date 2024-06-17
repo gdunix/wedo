@@ -1,5 +1,7 @@
 "use server";
+
 import { cookies } from "next/headers";
+import * as handler from "./handler";
 import { setSession } from "./session";
 
 type data = {
@@ -46,13 +48,8 @@ export const logout = () => {
   cookies().set("session", "", { expires: new Date(0) });
 };
 
-export const getAll = async (cache: string = "no-store") => {
-  const res = await fetch(`${process.env.URL}/api/users`, {
-    cache,
-  });
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
+export const getAll = async (cache: string = "no-store") =>
+  await handler.getAll("users", cache);
 
-  return res.json();
-};
+export const getPaginated = async (page: number, limit: number) =>
+  await handler.getPaginated("users", page, limit);
