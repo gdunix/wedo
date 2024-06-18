@@ -31,11 +31,11 @@ const Menu: React.FC<Props> = ({ isAdmin }: Props) => {
         <Button variant="bordered">My Account</Button>
       </DropdownTrigger>
       <DropdownMenu aria-label="Static Actions">
-        {isAdmin && (
+        {isAdmin ? (
           <DropdownItem key="admin" textValue="admin" onPress={onRedirect}>
             Admin
           </DropdownItem>
-        )}
+        ) : <></>}
         <DropdownItem
           key="delete"
           className="text-danger"
