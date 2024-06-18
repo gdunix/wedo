@@ -1,6 +1,11 @@
 import { User } from "@/types";
 import * as U from "@/helpers/utils";
-import { create } from "lodash";
+
+const actionColumn = {
+  name: "Actions",
+  uid: "actions",
+  component: "Actions",
+};
 
 export const getColumns = (data: User[]) => {
   const columnNames = data && data.length ? Object.keys(data[0]) : [];
@@ -12,14 +17,7 @@ export const getColumns = (data: User[]) => {
     component: column === "roles" ? "Chip" : "Text",
   }));
 
-  return [
-    ...columns,
-    {
-      name: "Actions",
-      uid: "actions",
-      component: "Actions",
-    },
-  ];
+  return columns;
 };
 
 export const getRows = (data: User[]) =>
