@@ -3,6 +3,7 @@
 import { cookies } from "next/headers";
 import * as handler from "./handler";
 import { setSession } from "./session";
+import { redirect } from "next/dist/server/api-utils";
 
 type data = {
   email: string;
@@ -41,7 +42,7 @@ export const login = async (formData: data) => {
 
   const user = await res.json();
   setSession(user);
-  return { email: user?.email };
+  return { email: user?.email, redirectUrl: user?.redirectUrl };
 };
 
 export const logout = () => {

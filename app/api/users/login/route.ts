@@ -26,6 +26,7 @@ const login = async (req: Request): Promise<any> => {
     id: user.id,
     email: user.email,
     role: user.roles.role_name,
+    redirectUrl: user.roles.role_name === "admin" ? "/admin" : "/dashboard",
   };
 };
 

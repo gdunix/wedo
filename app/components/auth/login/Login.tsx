@@ -28,12 +28,13 @@ const Login = ({ isModal = false }: Props) => {
       return;
     }
     try {
-       await login({
+       const response = await login({
         email,
         password,
       });
       showSnackbar("Login successful", { variant: "success" });
-      router.push('/dashboard');
+      router.push(response?.redirectUrl || "/dashboard");
+      router.refresh();
     } catch (error) {
       showSnackbar(`${error}`, { variant: "error" });
     }
