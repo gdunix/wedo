@@ -13,7 +13,7 @@ export const getPaginated = async (
   return res.json();
 };
 
-export const getAll = async (url: string, cache: string = "no-store") => {
+export const getAll = async (url: string, cache: RequestCache = "no-store") => {
   const res = await fetch(`${process.env.URL}/api/${url}`, {
     cache,
   });
