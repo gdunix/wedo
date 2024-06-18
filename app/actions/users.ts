@@ -49,7 +49,7 @@ export const logout = () => {
   cookies().set("session", "", { expires: new Date(0) });
 };
 
-export const getAll = async (cache: string = "no-store") =>
+export const getAll = async (cache: RequestCache = "no-store") =>
   await handler.getAll("users", cache);
 
 export const getPaginated = async (page: number, limit: number) =>
