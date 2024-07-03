@@ -2,8 +2,8 @@ import { handler } from "@/api/handler";
 import { getUser } from "../queries";
 import { verifyPassword } from "../utils";
 
-const login = async (req: Request): Promise<any> => {
-  const data = await req.json();
+const login = async (req?: Request): Promise<any> => {
+  const data = req && await req.json();
   const { email, password } = data;
   if (!email || !password) {
     return new Response("Missing required fields", { status: 400 });
