@@ -1,4 +1,4 @@
-import { Vendor } from "@/types/Vendors";
+import { Vendor } from "@/types/vendors";
 import * as C from "../../constants";
 
 export const getVendor = (slug: string): Vendor | undefined =>

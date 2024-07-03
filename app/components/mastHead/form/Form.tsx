@@ -6,7 +6,7 @@ import { Select, SelectItem } from "@/components/ui/select";
 import { Card, CardHeader, CardBody } from "@/components/ui/card";
 import Button from "@/components/ui/button";
 import * as C from "@/constants";
-import { Category } from "@/types/Vendors";
+import { Category } from "@/types/vendors";
 import sortBy from "lodash/fp/sortBy";
 
 const Form = () => {

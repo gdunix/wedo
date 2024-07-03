@@ -11,40 +11,51 @@ import {
 import { logout } from "@/actions/users";
 
 type Props = {
-  isAdmin: boolean;
+  isAdmin?: boolean;
 };
 
-const Menu: React.FC<Props> = ({ isAdmin }: Props) => {
+const Menu: React.FC<Props> = ({ isAdmin = false }: Props) => {
+  const onLogout = async () => {
+    await logout();
+    window.location.replace("/");
+  };
   const router = useRouter();
   const onRedirect = (e: any) => {
     const target = e.target as HTMLElement;
     const url = target?.dataset?.key ?? "";
     url && router.push(`/${url}`);
   };
-  const onLogout = () => {
-    logout();
-    router.refresh();
-  };
   return (
     <Dropdown>
       <DropdownTrigger>
         <Button variant="bordered">My Account</Button>
       </DropdownTrigger>
-      <DropdownMenu aria-label="Static Actions">
-        {isAdmin ? (
+      {isAdmin ? (
+        <DropdownMenu aria-label="Static Actions">
           <DropdownItem key="admin" textValue="admin" onPress={onRedirect}>
             Admin
           </DropdownItem>
-        ) : <></>}
-        <DropdownItem
-          key="delete"
-          className="text-danger"
-          color="danger"
-          onPress={onLogout}
-        >
-          Logout
-        </DropdownItem>
-      </DropdownMenu>
+          <DropdownItem
+            key="delete"
+            className="text-danger"
+            color="danger"
+            onPress={onLogout}
+          >
+            Logout
+          </DropdownItem>
+        </DropdownMenu>
+      ) : (
+        <DropdownMenu aria-label="Static Actions">
+          <DropdownItem
+            key="delete"
+            className="text-danger"
+            color="danger"
+            onPress={onLogout}
+          >
+            Logout
+          </DropdownItem>
+        </DropdownMenu>
+      )}
     </Dropdown>
   );
 };

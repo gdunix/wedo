@@ -24,10 +24,24 @@ model users {
 }
 
 model vendor_types {
-  id      String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name    String  @db.VarChar(255)
-  slug    String  @db.VarChar(255)
-  img     String  @db.VarChar(255)
+  id      String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name    String    @db.VarChar(255)
+  slug    String    @db.VarChar(255)
+  img     String    @db.VarChar(255)
   rank    Int
   enabled Boolean
+  vendors vendors[]
+}
+
+model vendors {
+  id           String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name         String
+  type_id      String       @db.Uuid
+  slug         String
+  description  String?
+  mobile       String?
+  phone        String?
+  email        String?
+  website      String?
+  vendor_types vendor_types @relation(fields: [type_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }

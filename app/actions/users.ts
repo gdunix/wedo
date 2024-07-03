@@ -3,7 +3,6 @@
 import { cookies } from "next/headers";
 import * as handler from "./handler";
 import { setSession } from "./session";
-import { redirect } from "next/dist/server/api-utils";
 
 type data = {
   email: string;
@@ -45,8 +44,8 @@ export const login = async (formData: data) => {
   return { email: user?.email, redirectUrl: user?.redirectUrl };
 };
 
-export const logout = () => {
-  cookies().set("session", "", { expires: new Date(0) });
+export const logout = async () => {
+  await cookies().set("session", "", { expires: new Date(0) });
 };
 
 export const getAll = async (cache: RequestCache = "no-store") =>

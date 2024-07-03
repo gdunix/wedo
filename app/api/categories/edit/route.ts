@@ -1,8 +1,8 @@
 import { protectedHandler } from "../../handler";
 import * as Q from "../queries";
 
-const editCategory = async (req: Request): Promise<any> => {
-    const data = await req.json();
+const editCategory = async (req?: Request): Promise<any> => {
+    const data = req && await req.json();
     const { id, body } = data;
     return await Q.editCategory(id, body);
 };

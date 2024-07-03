@@ -30,6 +30,7 @@ const config: Config = {
         "soft-bl:": "rgb(170,204,241)",
         primary: "rgb(235, 84, 198)",
         secondary: "#000",
+        white: "#fff",
       },
       fontFamily: {
         slabo: ["Slabo 27px", "serif"],

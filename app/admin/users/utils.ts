@@ -25,5 +25,5 @@ export const getRows = (data: User[]) =>
     id: user.id,
     email: user.email,
     created_at: user.created_at,
-    role: U.capitalize(user.roles?.role_name),
+    role: U.capitalize(user.roles?.role_name ?? ''),
   }));

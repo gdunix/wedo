@@ -4,13 +4,13 @@ import {
   NavbarBrand,
   NavbarItem,
 } from "@/components/ui/navBar";
-import useAuth from "@/hooks/useAuth";
+import { getUserData } from "@/actions/session";
 import Logo from "./logo";
 import Actions from "./actions";
 import Menu from "./menu";
 
 const Header: React.FC = async () => {
-  const { isAdmin, isLoggedIn } = await useAuth();
+  const { isLoggedIn, isAdmin } = await getUserData();
   return (
     <header>
       <Navbar
@@ -31,7 +31,9 @@ const Header: React.FC = async () => {
 
         <NavbarContent className="hidden sm:flex gap-4" justify="center" />
         <NavbarContent justify="end" className="flex justify-end">
-          <NavbarItem>{isLoggedIn ? <Menu isAdmin={isAdmin} /> : <Actions />}</NavbarItem>
+          <NavbarItem>
+            {isLoggedIn ? <Menu isAdmin={isAdmin} /> : <Actions />}
+          </NavbarItem>
         </NavbarContent>
       </Navbar>
     </header>

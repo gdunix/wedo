@@ -3,7 +3,7 @@ import { Card, CardBody, CardHeader } from "@/components/ui/card";
 import * as U from "../utils";
 import { Image } from "@nextui-org/react";
 import Rating from "@/components/ui/rating";
-import { Vendor } from "@/types/Vendors";
+import { Vendor } from "@/types/vendors";
 import Link from "next/link";
 
 type Props = {

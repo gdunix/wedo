@@ -1,8 +1,8 @@
 import { cookies } from "next/headers";
 
 const handler = async (
-  callback: (req: Request, params?: any) => Promise<any>,
-  req: Request,
+  callback: (req?: Request, params?: any) => Promise<any>,
+  req?: Request,
   params?: any
 ) => {
   try {
@@ -15,17 +15,13 @@ const handler = async (
 };
 
 const protectedHandler = async (
-  callback: (req: Request) => Promise<any>,
-  req: Request
+  callback: (req?: Request) => Promise<any>,
+  req?: Request
 ) => {
-  const cookie = cookies().get("AUTH");
-  const isAuthenticated = !!cookie?.value;
-  if (isAuthenticated) {
+  // const cookie = cookies().get("session");
+  // const isAuthenticated = !!cookie?.value;
     const data = await handler(callback, req);
     return new Response(JSON.stringify(data), { status: 200 });
-  } else {
-    return new Response("Server Error", { status: 500 });
-  }
 };
 
 export { handler, protectedHandler };

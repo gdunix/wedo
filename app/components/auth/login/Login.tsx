@@ -1,16 +1,19 @@
 "use client";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { EmailInput, PasswordInput } from "@/components/ui/input";
 import Button from "@/components/ui/button";
 import Link from "@/components/ui/link";
 import { showSnackbar } from "@/components/ui/snackbar";
 import { login } from "@/actions/users";
+import Spinner from "@/components/ui/spinner";
 
 type Props = {
   isModal?: boolean;
 };
 
 const Login = ({ isModal = false }: Props) => {
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const closeModal = () => {
     router.back();
@@ -28,15 +31,18 @@ const Login = ({ isModal = false }: Props) => {
       return;
     }
     try {
-       const response = await login({
+      setLoading(true);
+      const response = await login({
         email,
         password,
       });
-      showSnackbar("Login successful", { variant: "success" });
       router.push(response?.redirectUrl || "/dashboard");
       router.refresh();
+      showSnackbar("Login successful", { variant: "success" });
     } catch (error) {
       showSnackbar(`${error}`, { variant: "error" });
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -62,7 +68,7 @@ const Login = ({ isModal = false }: Props) => {
             </Button>
           )}
           <Button type="submit" color="primary">
-            Login
+            {loading ? <Spinner color="white" /> : "Login"}
           </Button>
         </div>
       </div>

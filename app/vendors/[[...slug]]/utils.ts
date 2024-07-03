@@ -1,5 +1,5 @@
 import * as C from "@/constants";
-import { Vendor } from "@/types/Vendors";
+import { Vendor } from "@/types/vendors";
 
 export const getVendors = ({
   category = "",

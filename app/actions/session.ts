@@ -15,14 +15,11 @@ const isTokenExpired = (payload: Payload) => {
   }
 };
 
-export const updateSession = async (
-  session: string
-): Promise<NextResponse> => {
+export const updateSession = async (session: string): Promise<NextResponse> => {
   const res = NextResponse.next();
   const parsed = await JWT.verifyJwt(session);
   const payload = parsed?.payload;
   const isExpired = payload && isTokenExpired(payload);
-  console.log('isExpired', isExpired);
   if (isExpired) {
     payload.expires = EXPIRES;
     res.cookies.set({
@@ -52,4 +49,13 @@ export const getSession = async () => {
   const session = cookies().get("session")?.value;
   if (!session) return null;
   return await JWT.verifyJwt(session);
+};
+
+export const getUserData = async () => {
+  const session = await getSession();
+  const role = session?.payload?.user?.role;
+  const isLoggedIn = !!session;
+  const isAdmin = role === "admin";
+
+  return { session, role, isLoggedIn, isAdmin };
 };

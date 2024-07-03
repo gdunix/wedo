@@ -22,8 +22,8 @@ const SignUp = ({ isModal = false }: Props) => {
       showSnackbar("Passwords do not match", { variant: "error" });
       return;
     }
-    if (password.length < 7) {
-      showSnackbar("Password must have than 6 characters", {
+    if (password.length < 6) {
+      showSnackbar("Password must have at least 6 characters", {
         variant: "error",
       });
       return;
@@ -34,7 +34,7 @@ const SignUp = ({ isModal = false }: Props) => {
         password,
       });
       showSnackbar("Signup successful", { variant: "success" });
-      isModal && closeModal();
+      router.push("/login");
     } catch (error) {
       showSnackbar(`${error}`, { variant: "error" });
     }

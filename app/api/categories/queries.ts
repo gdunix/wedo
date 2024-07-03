@@ -21,7 +21,6 @@ export const getCategories = async () =>
 export const getPaginatedCategories = async (page: number, limit: number) => {
   const skip = (page - 1) * limit;
   const take = limit;
-  console.log(skip, take);
   const categories = await prisma.vendor_types.findMany({
     skip,
     take,

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { NextURL } from "next/dist/server/web/next-url";
 
-const AUTH_PAGES = ["/dashboard"];
+const AUTH_PAGES = ["/dashboard", "/admin"];
 const isAuthPages = (url: string) =>
   AUTH_PAGES.some((page: string) => url.startsWith(page));
 
