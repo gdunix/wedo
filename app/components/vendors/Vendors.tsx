@@ -5,7 +5,7 @@ import Link from "next/link";
 import Button from "@/components/ui/button";
 import Image from "@/components/ui/image";
 import * as C from "@/constants";
-import {  CategoryTemp as Category } from "@/types/vendors";
+import {  CategoryTemp as Category } from "@/types";
 import * as U from "./utils";
 
 const Vendors: React.FC = () => {

@@ -1,4 +1,4 @@
-export type Vendor = {
+export type VendorTemp = {
   id: number;
   name: string;
   categoryId: number;

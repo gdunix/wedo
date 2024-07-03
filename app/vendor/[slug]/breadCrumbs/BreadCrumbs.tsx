@@ -1,6 +1,6 @@
 "use client";
 import { Breadcrumbs, BreadcrumbItem } from "@/components/ui/breadcrumbs";
-import { Vendor } from "@/types/vendors";
+import { VendorTemp as Vendor  } from "@/types";
 import * as U from "./utils";
 
 type Props = {
