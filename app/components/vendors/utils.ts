@@ -1,4 +1,4 @@
-import { Category } from "@/types/vendors";
+import {  CategoryTemp as Category } from "@/types/vendors";
 import sortBy from "lodash/fp/sortBy";
 import take from "lodash/fp/take";
 import compose from "lodash/fp/compose";

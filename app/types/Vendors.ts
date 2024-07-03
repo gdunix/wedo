@@ -15,7 +15,7 @@ export type City = {
   slug: string;
 };
 
-export type Category = {
+export type CategoryTemp = {
   id: number;
   name: string;
   img?: string;
